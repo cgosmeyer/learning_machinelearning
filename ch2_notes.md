@@ -6,7 +6,7 @@ see see jupyter notebook `ch2.ipynb`.
 Two types of supervised machine learning problems:
 1) CLASSIFICATION
 	* Goal is to predict a class label from a predfined list of possibilities. 
-	# For example, predicting the Iris species, or predicting the language of a website (French or English).
+	* For example, predicting the Iris species, or predicting the language of a website (French or English).
 
 2) REGRESSION
 	* Goal is to predict a continuous number ("floating-point" in programming speak or "real" in mathematical peak).
