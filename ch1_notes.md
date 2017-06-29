@@ -1,7 +1,7 @@
 CHAPTER 1
 ----------
 
-see jupyter notebook `chapter1_example1.ipynb`.
+see jupyter notebook `ch1_example1.ipynb`.
 
 INTRO
 
