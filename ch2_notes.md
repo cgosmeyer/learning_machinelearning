@@ -1,6 +1,6 @@
 # CHAPTER 2
 
-see see jupyter notebook `ch2.ipynb`.
+see see jupyter notebook `ch2_nearest_linear.ipynb`.
 
 Two types of supervised machine learning problems:
 1) CLASSIFICATION
@@ -58,6 +58,10 @@ If you have more features that training data points, any target y can be perfect
 
 There are many different linear models for regression, for which the difference is in how hte model parameters w and b are learned from the traiing data and how the model complexity can be controlled.
 
+The main parameter of linear models is the regularization parameter, `alpha` in regression models and `C` in classification models.  Another decision is whether to use *L2* or *L1* regularization. 
+
+Linear models are very fast to train and fast to predict. They often perform well when the number of features is large compared to the number of samples.
+
 
 ## LINEAR REGRESSION (ORDINARY LEAST SQUARES)
 
@@ -99,7 +103,7 @@ LEARNING CURVES: plots that show model performance as function of dataset size.
 An alternative to `Ridge` fir regularizing linear regression.
 
 Like ridge, restricts coefficients to be close to zero, but using *L1* regularization.  
-The consequence of L1 is that some coefficients are *exactly zero*, meaning some featuers are entirely ignored by the model. This is a form of automatic feature selection. Making some coefficients exactly zero often makes a model easier to interpret and can reveal the most important features of your model. 
+The consequence of *L1* is that some coefficients are *exactly zero*, meaning some featuers are entirely ignored by the model. This is a form of automatic feature selection. Making some coefficients exactly zero often makes a model easier to interpret and can reveal the most important features of your model. 
 
 Ridge is usually used as a first choice. 
 But if you have a large amount of features and expect only a few to be important, `Lasso` may be the better choice.
@@ -111,5 +115,44 @@ Combines penalties of `Lasso` and `Ridge`. But in `ElasticNet` ou need to adjust
 
 
 ## LINEAR MODELS FOR CLASSIFICATION
+
+For binary classification:
+
+	y = w[0] * x[0] + w[1] * x[1] + ... + w[p] * x[p] + b > 0
+
+Where the predicted value is thresholded at zero. If function is less than zero, predict class -1. If greater than zero, predict class +1. 
+
+Unlike linear models for regression, where y is a linear output of the features, in linear models for classification the *decision boundary* is a linear function of the output. 
+
+Two common linear classification algorithms are LOGISTIC REGRESSION and LINEAR SUPPORT VECTOR MACHINES (linear SVMs); `linear_model.LogisticRegression` and `svm.LinearSVC`, respectively.
+
+	Parameter "C" determines strength of the regularization.
+
+	Higher C = less regularization - tries to fit training set best as possible
+
+	Lower C = more regularization - model tries harder to find a coefficient vector (w) that is close to zero. 
+
+Note that `LogisticRegression applies an *L2* regularization by default.
+
+Using *L1* instead could be helpful because it limits the model to using only a few features. 
+
+
+## LINEAR MODELS FOR MULTICLASS CLASSIFICATION
+
+Many linear classification models are only for binary classes (except for logistic regression).  One way to extend binary classification algorithms to a multiclass classification algorithm is the *one-vs.-rest* approach.
+
+ONE-VS-REST: a binary model is learned for each class that tries to seperate that class from all of the other classes, resulting in as many binary models as there are classes.  
+
+To make a prediction, all binary classifiers are run on a test point. The classifier that has the highest score on its single class "wins" and this class label is returned as the prediction.
+
+Therefore, one vector of coefficients (w) and one intercept (b) for each class. 
+
+-------------------------------------------------------------------------------
+
+see jupyter notebook ...
+
+## NAIVE BAYES CLASSIFIERS
+
+
 
 
