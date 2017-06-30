@@ -1,5 +1,4 @@
-CHAPTER 2
-----------
+# CHAPTER 2
 
 see see jupyter notebook `ch2.ipynb`.
 
@@ -28,12 +27,12 @@ R^2 score (also known as "coefficient of determination") is a measure of goodnes
 **Sign of overfitting: training score high, testing score low**
 
 
-DRAWBACK OF K-NEAREST NEIGHBORS:
+## DRAWBACK OF K-NEAREST NEIGHBORS:
 
 Slow - doesn't work well when many features. In practice, not often used, although it is the easist algorithm to understand.
 
 
-LINEAR MODELS
+## LINEAR MODELS
 
 A class of models widely used in practice. They make predictions using a linear function of input features. 
 
@@ -60,7 +59,7 @@ If you have more features that training data points, any target y can be perfect
 There are many different linear models for regression, for which the difference is in how hte model parameters w and b are learned from the traiing data and how the model complexity can be controlled.
 
 
-LINEAR REGRESSION (ORDINARY LEAST SQUARES)
+## LINEAR REGRESSION (ORDINARY LEAST SQUARES)
 
 The simplest and most classic linear method for regression. It finds the parameters w and b that minimize the mean squared error between prediction and tree regression targest, y, on the training set. It has no parameters.
 
@@ -70,7 +69,7 @@ mean squared error = sum of the squared differences between the predictions and 
 	* "intercept" (b) is stored in `intercept_` attribute. A single float number.
 
 
-RIDGE REGRESSION
+## RIDGE REGRESSION
 
 Unlike linear regression, allows us to control complexity (so if overfitting, should turn here). Ridge regression is one of most common alternatives to standard linear regression.
 
@@ -95,7 +94,7 @@ LEARNING CURVES: plots that show model performance as function of dataset size.
 **Given enough data, ridge and linear regression will have the same performance.**
 
 
-LASSO
+## LASSO
 
 An alternative to `Ridge` fir regularizing linear regression.
 
@@ -106,11 +105,11 @@ Ridge is usually used as a first choice.
 But if you have a large amount of features and expect only a few to be important, `Lasso` may be the better choice.
 
 
-ELASTICNET
+## ELASTICNET
 
 Combines penalties of `Lasso` and `Ridge`. But in `ElasticNet` ou need to adjust two parameters: one for L1 regularization and one for L2 regularization.
 
 
-LINEAR MODELS FOR CLASSIFICATION
+## LINEAR MODELS FOR CLASSIFICATION
 
 
