@@ -149,9 +149,57 @@ Therefore, one vector of coefficients (w) and one intercept (b) for each class.
 
 -------------------------------------------------------------------------------
 
-see jupyter notebook ...
+see jupyter notebook `ch2_decisiontrees.ipynb`
 
 ## NAIVE BAYES CLASSIFIERS
+
+Even faster in training than linear models. But often have worse generalization performance. 
+
+Three kinds implemented in `scikit-learn`: `GaussianNB`, `BernoulliNB`, and `MultinomialNB`. 
+
+GAUSSIANNB: Can be applied to any continuous data. Stores average value and standard dev of each feature for each class. 
+
+BERNOULLINB: Assumes binary data. Counts how often every feature of each class is not zero. 
+
+MULTINOMIALNB: Assumes count data. Like Bernoulli, only takes into account the average value of each feature for each class.
+
+Bernoulli and Mulitnomial are often used in text classification. 
+
+
+## DECISION TREES
+
+Learn a hierarchy of if/else questions, leading to a decision. Used for classification and regression tasks. Work well if you have features on completely different scales or a mix of binary and continuous features. 
+
+You don't need to build the models by hand - you can learn them from data using supervised learning.
+
+Learning a decision tree means learning the sequence of if/else questions that gets us the true answer most quickly. In machine learning, these questions are called *tests*. In binary datasets, the tests are yes/no. In continous data, the tests are in form "Is feature *i* larger than value *a*?"
+
+To build a tree, the algorithm searches over all possible tests and finds the one that is most informative about the target variable. Building a tree like this, continuing until all leaves are pure leads, leads to a highly complex model that is overfit to the training dataset; pure leaves mean that a tree is 100% accurate on the training set. 
+
+To prevent over-fitting:
+
+	1. Stop the creation of the tree early (pre-pruning). Do this by limiting the max depth of tree, max number of leaves, or requiring a minimum number of points in a node to keep splitting it. 
+
+	2. Build the tree but then remove or collapse notes that contain little information (pruning or post-pruning)
+
+Implemented in `skikit-learn` in the `DecisionTreeRegressor` and `DecisionTreeClassifier` classes.  It *only* implements pre-pruning. 
+
+FEATURE IMPORTANCE: a way to summarize a tree. Rates how important each feature is for the decision a tree makes. It is a number between 0 and 1 for each feature, where 0 means "not used at all" and 1 means "perfectly predicts the target". The feature importances always sum to 1.
+
+Regression trees are similar to classification trees. Only difference is that regression models are not able to *extrapolate* or make predictions outside of the range of the training data. 
+
+Advantages of decision trees: 
+
+	* Resulting model can be easily visualized and understood by non-experts.
+
+	* Algorithms are completely invariant to scaling of the data. No pre-processing like normalization or standardization of features is needed. 
+
+Downsides of decision trees:
+
+	* Tend to overfit and provide poort generalization performance. In practice, ensemble methods are used in place of a single decision tree.
+
+
+## Ensembles of Decision Trees
 
 
 
