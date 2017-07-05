@@ -201,6 +201,79 @@ Downsides of decision trees:
 
 ## Ensembles of Decision Trees
 
+Ensembles combine multiple machine learning models to create more powerful models. 
+Two decision tree ensembles are 
 
+RANDOM FORESTS: Many decision trees, slightly different by randomizing the selected data posted used to build a tree and the selected features in each split test. Final fit will be an average of them all, reducing the overfitting of a single tree. 
+
+GRADIENT BOOSTED DECISION TREES: Builds trees in a serial manner, where each tree tries to correct the mistakes of the previous one. By default, no randomization and instead strong pre-pruning. Often use very shallow trees, depths one to five. 
+
+Benefits of random forests are that they can be easily parallelized; you can make a compact representation of the decision process. If want results to be reproducable, fix the `random_state` or include more trees. Random forests don't perform well on very high dimensional, sparse data, such as text data. 
+
+	Set `n_jobs=-1` to use all cores on your computer
+
+	Random forest rule of thumb: build as many trees as you have time/memory for.
+
+Try random forests before gradient boosted decision trees, unless want faster prediction time. 
+
+
+-------------------------------------------------------------------------------
+
+## KERNELIZED SUPPORT VECTOR MACHINES (SVMs)
+
+see jupyter notebook `ch2_support_vector_machines.ipynb`
+
+An extension of linear support vector machines that allow for more complex models that are not defined simply by hydroplanes in the input space.
+
+Linear models can be made more flexible by adding interactions or polynomials. Sometimes you cannot seperate classes using just a line! This is where SVMs come in.
+
+Adding nonlinear features to the representation fo the data can make linear models much more powerful. But it could make computation very expensive if we don't know which features to add and if we add many features. A solution to this problem is the KERNEL TRICK, which learns a classifier in a higher-dimensional space without actually computing the new, possibly very large representation.
+
+SUPPORT VECTORS: The subset of training points that are used for defining the decision boundary, lying on the border between the classes. To make a prediction for new point, the distance to each of the support vectors is measured and classification decision is made based on this distance.
+
+	`gamma` parameter determines how far the influence of a single training example reaches.  Low gamma = far reach = large radius for Gaussian kernel (more points considered).  High gamma = limited reach = small radius for Gaussian kernel, leads to more complex model.
+
+	`C` parameter is regularization parameter, limiting the importance of each point.
+
+	By default, C=1 and gamma=1/n_features
+
+SVMs require all features to vary on a similar scale. Often need to pre-process data to bring all features to roughly same scale.
+
+
+-------------------------------------------------------------------------------
+
+## NEURAL NETWORKS (DEEP LEARNING)
+
+see jupyter notebook `ch2_neural_networks.ipynb`
+
+A family of algorithms, often tailored very carefully to a specific use case. 
+
+One relatively simple deep learning method is Multilayer Perceptrons (MLPs), also known as (vanilla) feed-forward neural networks, or just neural networks.
+
+MLPs can be viewed as generalizations of linear models that perform multiple stages of processing to come to a decision. In an MPL, the process of computing weighted sums is repeated multiple times, first computing HIDDEN UNITS that represent an intermediate processing step. 
+
+What makes this more powerful than a linear model is that a nonlinear function is applied to result of the weighted sum for each hidden unit, allowing the neural network to learn much more complicated functions than a linear model could. 
+
+Two nonlinear functions:
+
+RECTIFYING NONLINEARITY (RELU): Each hidden unit = straight line segment. Add more hidden units to make a smoother boundary.
+
+TANGENS HYPERBOLICUS (TANH): smooth.
+
+	By default, the MLP in `scikit-learn` uses 100 hidden nodes.
+
+	By default, the l2 (`alpha` parameter) is set to a very low value (little regularization)
+
+Weights in neural networks are set randomly before learning is started and this random initiation affects the model that is learned. This can make a difference for smaller networks. 
+
+You must rescale all input features so that they vary in a similar way idally with a mean of 0 and variance of 1.
+
+For larger models, you need to go beyond `scikit-learn` and to the libraries `keras`, `lasagna`, and `tensor-flow`.  These libraries also allow the use of GPUs, while `scikit-learn` does not. 
+
+Neural networks often beat other machine learning algorithms for classification and regression tasks but they often take a long time to train and careful preprocessing of the data. 
+
+-------------------------------------------------------------------------------
+
+## UNCERTAINTY ESTIMATES FROM CLASSIFIERS
 
 
