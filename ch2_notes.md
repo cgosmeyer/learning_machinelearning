@@ -276,4 +276,28 @@ Neural networks often beat other machine learning algorithms for classification 
 
 ## UNCERTAINTY ESTIMATES FROM CLASSIFIERS
 
+see jupyter notebook `ch2_uncertainty.ipynb`
+
+Most classifiers have at least one of two functions for uncertainty estimates: `decision_function` and `predict_proba`. 
+
+The values in the `decision_function` encode how strongly the model believes a data point belongs to the "positive" class.  Positive values indicate preference for the "positive" class.
+
+In binary classification, the "negative" class is always the first entry of the `classes_` attribute and the "positive" class is the second entry. 
+
+The range of the `decision_function` can be arbitrary.
+
+The output of `predict_proba` is a probability for each class. For binary classification, the first entry in each row is the estimated probability of the first class, and the second entry is the estimated probability of the second class. The values are always between 0 and 1 and the sum of the entries for both classes is always 1. 
+
+A model with more complexity (overfitted) makes more "certain" predictions (even if wrong). Less complex models have more uncertainty in its predictions.
+
+CALIBRATED: a model whose reported uncertainty matches how correct it actually is. In a calibrated model, a prediction made with 70% certainty would be correct 70% of the time. 
+
+In multiclass case, `decision_function` has shape (`n_samples`, `n_classes`) and each column provides a "certainty score" for each class. Likewise for `predict_proba`, where again the probabilities for the possible classes for each data point sum to 1.
+
+
+ 
+
+
+
+
 
