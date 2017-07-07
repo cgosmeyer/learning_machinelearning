@@ -1,4 +1,4 @@
-# CHAPTER 1
+# CHAPTER 1: INTRODUCTION
 
 see jupyter notebook `ch1_example1.ipynb`.
 

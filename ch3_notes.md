@@ -42,3 +42,81 @@ Breaks data down into principle components, rotates, and removes components as d
 One of most common applications is visualizing high-dimenstional datasets. 
 
 By default `PCA` only rotates and shfits the data, keeping all principle components. To reduce dimensionality of data, we need to specify how many components we want to keep when creating the `PCA` object. 
+
+*Another application of PCA is feature extraction.* 
+
+You can try to do facial matching with `KNearestNeighbors`, etc, but can do better with PCA using the *whitening* option to rescale principle components to the same scale. 
+
+Removing components is like removing terms from a weighted sum. 
+
+### Non-Negative Matrix Factorization (NMF)
+
+Aim is to extract useful features. But unlike PCA, where we wanted components that were orthogonal and explained as much variance of the data as possible, in NMF we want the components and the coefficients to be non-negative. Therefore we can only apply NMF to data where each feature is non-negative.
+
+This method is helpful for data that is crated as the addition of several independent sources, such as an audio track of multiple people speaking or music with many instruments; here NMF can identify original components. 
+
+### Manifold Learning with t-SNE
+
+A class of algorithms for visualization that allow for more complex mappings and often provide better visualizations.
+
+Manifold algorithms are mainly for visualization and are rarely used to generate more than two features. They cannot be applied to test sets; they can only transform the data they were trained for. 
+
+
+## CLUSTERING
+
+The task of partitioning dataset into groups, called clusters. Goal is to split up the data in such a way that points within a single cluster are very similar.  Similarly to classification algorithms, clustering algorithms assign (or predict) a number to each data point, indicating whihc cluster a particular point belongs to.
+
+### K-Means Clustering
+
+One of the simplest and most commonly used clustering algorithms. Works in alternating two steps:
+
+	1. Assign each data point to the closest cluster center. 
+
+	2. Set each cluster center as the mean of the data points assigned to it.
+
+The algorithm is finished when the assignment of instances to clusters no longer changs.
+
+K-means, however, always assumes all clusters have same "diameter" and can only capture relatively simple shapes. It also assumes all directions are equally important for each cluster; it will fail to identify nonspherical clusters.
+
+VECTOR QUANITIZATION: View of k-means as a decomposition method, where each point is represented using a single component.
+
+With k-means, unlike PCA or NMF, can use many more clusters than input dimensions to encode the data. That is, effectively add more dimensions.
+
+Downside to k-means is that it relies on random intialization. By default, the algorithm is run 10 times with 10 different random initializations and the best result is returned. 
+
+### Agglomerative Clustering
+
+A collection of clustering algorithms that start by declaring each point its own cluster, and then merges the two most similar clusters until some stoping criterion is satisfied. In `scikit-learn` the stopping criterion is the number of clusters. 
+
+`AgglomerativeClustering` cannot make predictions for new data points and therefore has no `predict` method. 
+
+Agglomerative clustering also fails at seperating complex shapes.
+
+### DBSCAN
+
+"Density-based spatial clustering of applications with noise".
+
+Does not require the user to set the number of clusters a priori, it can capture clusters of complex shapes, and it can identify points that are not part of any cluster.
+
+The idea behind DPSCAN is that clusters form dense regions of data, separated bt regions that are relatively empty.  Three kinds of points in the end:
+
+	1. Points within dense regions are called *core samples*.
+
+	2. Points that are within distance `eps` of core points called *boundary points*.
+
+	3. Points that don't belong to any cluster, called *noise*.
+
+Not possible to create more than one big cluster using DBSCAN; agglomerative clustering and k-means are more likely to create clusters of even size. 
+
+
+## COMPARING AND EVALUATING CLUSTERING ALGORITHMS
+
+How to assess a clustering algorithm relative to a ground truth clustering?
+
+Two metrics are *adjusted rand index (ARI)* and *normalized mutual information (NMI)*, with provide a quantitative measure with an optimum of 1 and a value of 1 for unrelated clusterings.
+
+But usually you don't know the ground truth; if you did, you would use a classifier. Therefore, metrics like ARI and NMI usually only help in developing algorithms, not in assessing success in an application. 
+
+*silhoutte coefficient* is a metric that doesn't require ground truth. However, it doesn't often work well in practice. 
+
+*robustness-based* clustering metrics are slightly better. 

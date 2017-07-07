@@ -1,4 +1,4 @@
-# CHAPTER 2
+# CHAPTER 2: SUPERVISED LEARNING
 
 see see jupyter notebook `ch2_nearest_linear.ipynb`.
 
