@@ -1,6 +1,6 @@
-# CHAPTER 2: UNSUPERVISED LEARNING
+# CHAPTER 3: UNSUPERVISED LEARNING
 
-see see jupyter notebook `.ipynb`.
+see see jupyter notebook `ch3.ipynb`.
 
 In unsupervised learning, no known output, no teacher to instruct the learning algorithm. The learning algorithm is shown the input data and asked to extract knowledge from this data. 
 
