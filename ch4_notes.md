@@ -1,6 +1,6 @@
 # CHAPTER 4: REPRESENTING DATA AND ENGINEERING FEATURES
 
-see see jupyter notebook `ch4.ipynb`.
+see jupyter notebook `ch4.ipynb`.
 
 CONTINUOUS FEATURES: Numeric. Examples are pixel brightness, size measurements.
 
