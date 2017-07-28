@@ -28,5 +28,59 @@ You need to split the data three ways: training set, validation set (for tuning 
 
 Because cross-validation is often, in practice, combined with a grid search, *cross-validation* colloquially refers to grid search with cross-validation.
 
+## METRICS FOR BINARY CLASSIFICATION
+
+In statistics,
+
+	false positive: type I error
+
+	false negative: type II error
+
+*Confusion matrices:* one of most comprehensive ways to represent the result of evaluating binary classification.
+
+The output of `confusion_matrix` is a two-by-two array where the rows correspond to the true classes and columns correspond to the predicted classes. Entries in the main diagonal correspond to correct classifications. 
+
+Can summarize the results of a confusion matrix as follows:
+
+	accuracy = (TP+TN) / (TP+TN+FP+FN)
+
+ie, correct predictions divided by number of examples. 
+
+*When classes are imbalanced, accuracy is a poor evaluation measure.*
+
+Precision, on the other hand, measures how many of the samples predicted as positive are actually positive:
+
+	precision = TP / (TP+FP)
+
+This is used as a preformance metric when the goal is to limit the number of false positives.
+
+Recall measures how many of the positive samples are captured by positive predictions:
+
+	recall = TP / (TP+FN)
+
+This is used when we need to identify all positive samples; that is, when it is important to avoid false negatives. 
+
+One way to summarize recall and precision is with *f-score*:
+
+	F = 2 * (precision*recall) / (precision+recall)
+
+There is a trade off between optimizing recall and optimizing precision.
+
+The function `classification_report` provides precision, recall, f1-score, and support (the number of samples in this class according to ground truth).
+
+A *ROC* curve considers all possible thresholds for a given classifier and plots the false positive rate (FPR) against the true positive rate (TPR). 
+
+	FPR = FP / (FP+TN)
+
+The ideal curve is close to the top left; you want a classifier that produces a high recall while keeping a low false positive rate.  ROC curves are often summarized by computing the area under the curve (AUC), where 0 is worst and 1 is best.  Predicting randomly results in an AUC of 0.5. 
+
+## METRICS FOR MULTICLASS CLASSIFICATION
+
+The metrics for multiclass classifcation are derived from binary, but averaged over all classes. 
+
+## REGRESSION METRICS
+
+For most applications, using the default R^2 from the `score` method is enough. 
+
 
 
